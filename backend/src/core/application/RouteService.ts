@@ -2,7 +2,8 @@ import { RouteRepositoryPort } from "../ports/RouteRepositoryPort";
 import { Route, RouteProps } from "../domain/Route";
 
 export class RouteService {
-  constructor(private routeRepo: RouteRepositoryPort) {}
+  constructor(private routeRepo: RouteRepositoryPort) {
+  }
 
   async getAllRoutes(): Promise<Route[]> {
     return this.routeRepo.getAllRoutes();

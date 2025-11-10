@@ -5,13 +5,16 @@ import { Route } from "../../../core/domain/Route";
 
 export function createRoutesController(routeService: RouteService) {
   const router = Router();
-
+  //console.log(routeService,"this is routeService");
   // GET /routes - fetch all routes
   router.get("/", async (_req: Request, res: Response) => {
+    const routes: Route[] = await routeService.getAllRoutes();
+    //console.log(routes, "result aagaya guys");
     try {
       const routes: Route[] = await routeService.getAllRoutes();
       res.json(routes);
     } catch (err: any) {
+      console.log("error aagaya");
       res.status(500).json({ error: err.message });
     }
   });

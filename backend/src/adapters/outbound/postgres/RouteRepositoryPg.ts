@@ -4,7 +4,8 @@ import  {RouteRepositoryPort}  from "../../../core/ports/RouteRepositoryPort";
 import { Route } from "../../../core/domain/Route";
 
 export class RouteRepositoryPg implements RouteRepositoryPort {
-  constructor(private db: Pool) {}
+  constructor(private db: Pool) {
+  }
 
   async addRoute(route: Route): Promise<Route> {
     const client = await this.db.connect();
@@ -38,8 +39,12 @@ export class RouteRepositoryPg implements RouteRepositoryPort {
   }
 
   async getAllRoutes(): Promise<Route[]> {
-    const res = await this.db.query("SELECT * FROM routes");
+    //console.log("Route value at runtime:", Route);
+    //console.log("Inside getAllRoutes, db:", this.db);
+    const res = await this.db.query("SELECT * FROM routes ORDER BY route_id ASC");
+    //console.log(res, "res");
     return res.rows.map(row => new Route(row));
+
   }
 
   async getRouteById(routeId: string): Promise<Route | null> {
