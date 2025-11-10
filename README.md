@@ -1,2 +1,2 @@
 Project is not completed, still in progress.
-Only /routes and /comparison have been build.
+Only /route endpoints have been build.
